@@ -1,0 +1,7 @@
+
+=== Deploying to 'am-here-5fbe1'...
+
+i  deploying functions
+Running command: npm --prefix "$RESOURCE_DIR" run lint
+
+Error: functions predeploy error: Command terminated with non-zero exit code 1

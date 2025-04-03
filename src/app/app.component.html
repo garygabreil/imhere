@@ -1,698 +1,354 @@
-<!-- Header (Navbar)
-<nav
-  class="navbar navbar-expand-lg navbar bg-light"
-  style="background: #040000; color: #d45e0d"
->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#" style="color: #d45e0d">AM HERE</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-    >
+    <a class="navbar-brand fw-bold" href="#">AM HERE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item fw-bold">
-          <a class="nav-link" href="#" style="color: #d45e0d"
-            >Health is important, We care for it</a
-          >
-        </li>
-
-        <li class="nav-item fw-bold">
-          <a class="nav-link" href="#" style="color: #d45e0d"></a>
+          <a class="nav-link" href="#">Health is important, We care for it</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <h2>We care about your HEALTH</h2>
+    <p class="lead">The Greatest Wealth is Health</p>
+    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#orderModal">
+      Order Now
+    </button>
+  </div>
+</section>
+
 <!-- Main Content -->
 <div class="container my-5">
-  <!-- Header Section -->
-  <header class="header py-3">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold" style="color: #d45e0d">
-          We care about your HEALTH, The Greatest Wealth is Health
-        </h1>
-      </div>
-    </div>
-  </header>
+  <div class="text-center mb-5">
+    <h2 class="display-5 fw-bold">Our Subscription Boxes</h2>
+    <p class="lead fw-bold">Choose the perfect box for your health needs</p>
+  </div>
 
-  <!-- Main Content -->
-  <main class="py-5">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="display-5 fw-bold" style="color: #d45e0d">
-          Our Subscription Boxes
-        </h2>
-        <p class="lead fw-bold" style="color: #d45e0d">
-          Choose the perfect box for your health needs
-        </p>
-      </div>
-
-      <!-- Subscription Boxes Grid (3x) -->
-      <div class="row row-cols-1 row-cols-md-3 g-4 fw-bold">
-        <!-- Mini Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card fw-bold">
-            <div class="card-header">
-              <h5 class="card-title mb-0 fw-bold" style="color: #d45e0d">
-                Mini Box
-              </h5>
-            </div>
-            <img
-              src="../../../assets/images/image_2.jpeg"
-              class="card-img-top"
-              alt="Mini Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body">
-              <ul class="list-unstyled">
-                <li style="color: #d45e0d">
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>4
-                  Mixed Fruits Slices
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 69</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Weekly:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 350</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span class="price-highlight" style="color: #d45e0d">1300</span>
-              </div>
+  <!-- Subscription Boxes Grid -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (box of boxTypes; track box.id) {
+      <div class="col">
+        <div class="card h-100 subscription-card">
+          <div class="card-header">
+            <h5 class="card-title">{{ box.name }}</h5>
+          </div>
+          <img [src]="box.image + '?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'" class="card-img-top" [alt]="box.name">
+          <div class="card-body">
+            <ul class="list-unstyled">
+              @for (item of box.description.split(','); track $index) {
+                <li><i class="bi bi-check-circle-fill"></i>{{ item.trim() }}</li>
+              }
+            </ul>
+            <div class="delivery-info">
+              <p><i class="bi bi-info-circle"></i> <strong>Pre-booking:</strong> Must be done one day before delivery</p>
+              <p><i class="bi bi-clock"></i> <strong>Delivery:</strong> 7:00 AM to 9:00 PM</p>
+              <p><i class="bi bi-truck"></i> <strong>Free Delivery:</strong> Within 2 KM of Kallakurichi</p>
+              @if (box.id === 'salad' || box.id === 'premium' || box.id === 'fitness') {
+                <p><i class="bi bi-gear"></i> <strong>Customised Box:</strong> Available</p>
+              }
+              @if (box.id === 'premium' || box.id === 'fitness') {
+                <p><i class="bi bi-clock-history"></i> <strong>Customised Time:</strong> For bulk orders</p>
+              }
             </div>
           </div>
-        </div>
-
-        <!-- Classic Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card">
-            <div class="card-header">
-              <h5 class="card-title mb-0" style="color: #d45e0d">
-                Classic Box
-              </h5>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Trial:</span>
+              <span class="price-highlight">₹{{ box.prices.trial }}</span>
             </div>
-            <img
-              src="../../../assets/images/image_3.jpeg"
-              class="card-img-top"
-              alt="Classic Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body" style="color: #d45e0d">
-              <ul class="list-unstyled">
-                <li>
-                  <i
-                    class="bi bi-check-circle-fill text-success me-2"
-                    style="color: #d45e0d"
-                  ></i
-                  >1 Vegetable
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>3
-                  Fruits
-                </li>
-                <li>
-                  <i
-                    class="bi bi-check-circle-fill text-success me-2"
-                    style="color: #d45e0d"
-                  ></i
-                  >1 Mixed Dry Fruits
-                </li>
-              </ul>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Weekly:</span>
+              <span class="price-highlight">₹{{ box.prices.weekly }}</span>
             </div>
-            <div class="card-footer bg-transparent">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 100</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Weekly:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 550</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 2200</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Standard Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card">
-            <div class="card-header">
-              <h5 class="card-title mb-0" style="color: #d45e0d">
-                Standard Box
-              </h5>
-            </div>
-            <img
-              src="../../../assets/images/image_4.jpeg"
-              class="card-img-top"
-              alt="Standard Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body" style="color: #d45e0d">
-              <ul class="list-unstyled">
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Vegetables
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>3
-                  Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>1
-                  Mixed Dry Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>1
-                  Sprouts
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent" style="color: #d45e0d">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span class="price-highlight" style="color: #d45e0d"
-                  >&#8377; 129</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Weekly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 620</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 2400</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Premium Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card">
-            <div class="card-header">
-              <h5 class="card-title mb-0" style="color: #d45e0d">
-                Premium Box
-              </h5>
-            </div>
-            <img
-              src="../../../assets/images/image_5.jpeg"
-              class="card-img-top"
-              alt="Premium Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body" style="color: #d45e0d">
-              <ul class="list-unstyled">
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Vegetables
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>4
-                  Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Mixed Dry Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Sprouts
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 140</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d"> Weekly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 700</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 2600</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fitness Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card">
-            <div class="card-header">
-              <h5 class="card-title mb-0" style="color: #d45e0d">
-                Fitness Box
-              </h5>
-            </div>
-            <img
-              src="../../../assets/images/image_6.jpeg"
-              class="card-img-top"
-              alt="Fitness Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body" style="color: #d45e0d">
-              <ul class="list-unstyled">
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2 Dry
-                  Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>3
-                  Fruits
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Eggs
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Vegetables
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>2
-                  Sprouts
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>1
-                  Salad
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 200</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Weekly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 1000</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 2999</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Salad Box -->
-        <div class="col">
-          <div class="card h-100 subscription-card">
-            <div class="card-header">
-              <h5 class="card-title mb-0" style="color: #d45e0d">Salad Box</h5>
-            </div>
-            <img
-              src="../../../assets/images/image_7.jpeg"
-              class="card-img-top"
-              alt="Salad Box"
-              style="height: 200px; object-fit: cover"
-            />
-            <div class="card-body" style="color: #d45e0d">
-              <ul class="list-unstyled">
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i>Mini
-                  Box - &#8377; 70
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i
-                  >Standard Box - &#8377; 120
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill text-success me-2"></i
-                  >Premium Box - &#8377; 180
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Trial:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 70</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <span style="color: #d45e0d">Weekly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 120</span
-                >
-              </div>
-              <div class="d-flex justify-content-between mb-3">
-                <span style="color: #d45e0d">Monthly:</span>
-                <span style="color: #d45e0d" class="price-highlight"
-                  >&#8377; 180</span
-                >
-              </div>
+            <div class="d-flex justify-content-between">
+              <span>Monthly:</span>
+              <span class="price-highlight">₹{{ box.prices.monthly }}</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
-
-  <!-- Footer Section -->
-  <footer class="text-center py-4">
-    <div class="container">
-      <div class="social-links">
-        Instagram:
-        <a href="https://www.instagram.com/fit25204/" target="_blank">
-          <i class="bi bi-instagram"></i>
-        </a>
-        Whatsappp:
-        <a href="https://wa.me/918438911467" target="_blank">
-          <i class="bi bi-whatsapp"></i>
-        </a>
-      </div>
-
-      <button
-        class="btn btn-success"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Order Now
-      </button>
-    </div>
-  </footer>
+    }
+  </div>
 </div>
 
-<!-- order modal dailog -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Order Information
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <!-- form control -->
-        <form
-          [formGroup]="boxForm"
-          class="row g-2 needs-validation p-3 border rounded shadow-sm"
-          novalidate
-        >
-          <!-- Name & Phone Fields -->
-          <div class="row row-cols-2">
-            <div class="col">
-              <label for="name" class="form-label text-muted">Name</label>
-              <input
-                type="text"
-                id="name"
-                formControlName="name"
-                class="form-control form-control-sm"
-                [ngClass]="{
-                  'is-invalid':
-                    boxForm.get('name')?.invalid &&
-                    boxForm.get('name')?.touched,
-                  'is-valid': boxForm.get('name')?.valid
-                }"
-                placeholder="Name"
-              />
-              <div
-                *ngIf="
-                  boxForm.get('name')?.invalid && boxForm.get('name')?.touched
-                "
-                class="invalid-feedback"
-              >
-                Name is required.
-              </div>
-            </div>
-
-            <div class="col">
-              <label for="phoneNumber" class="form-label text-muted"
-                >Phone No</label
-              >
-              <input
-                type="text"
-                id="phoneNumber"
-                formControlName="phoneNumber"
-                class="form-control form-control-sm"
-                [ngClass]="{
-                  'is-invalid':
-                    boxForm.get('phoneNumber')?.invalid &&
-                    boxForm.get('phoneNumber')?.touched,
-                  'is-valid': boxForm.get('phoneNumber')?.valid
-                }"
-                placeholder="Phone number"
-              />
-              <div
-                *ngIf="
-                  boxForm.get('phoneNumber')?.invalid &&
-                  boxForm.get('phoneNumber')?.touched
-                "
-                class="invalid-feedback"
-              >
-                Enter a valid phone number.
-              </div>
-            </div>
-          </div>
-
-          <!-- Address Field -->
-          <div class="col-12">
-            <label for="address" class="form-label text-muted">Address</label>
-            <input
-              type="text"
-              id="address"
-              formControlName="address"
-              class="form-control form-control-sm"
-              [ngClass]="{
-                'is-invalid':
-                  boxForm.get('address')?.invalid &&
-                  boxForm.get('address')?.touched,
-                'is-valid': boxForm.get('address')?.valid
-              }"
-              placeholder="Address"
-            />
-            <div
-              *ngIf="
-                boxForm.get('address')?.invalid &&
-                boxForm.get('address')?.touched
-              "
-              class="invalid-feedback"
-            >
-              Address is required.
-            </div>
-          </div>
-
-          <!-- Box Selection Array -->
-          <div formArrayName="boxes" class="col-12">
-            <div
-              *ngFor="let box of boxes.controls; let i = index"
-              [formGroupName]="i"
-              class="p-2 border rounded shadow-sm mb-2"
-            >
-              <h6 class="text-muted">Box {{ i + 1 }}</h6>
-
-              <div class="row row-cols-2">
-                <!-- Box Type -->
-                <div class="col">
-                  <label class="form-label text-muted">Box Type</label>
-                  <select
-                    formControlName="boxType"
-                    class="form-control form-control-sm"
-                    (change)="onBoxTypeChange($event, i)"
-                    [ngClass]="{
-                      'is-invalid':
-                        box.get('boxType')?.invalid &&
-                        box.get('boxType')?.touched,
-                      'is-valid': box.get('boxType')?.valid
-                    }"
-                  >
-                    <option value="">--Choose--</option>
-                    <option value="mini">Mini</option>
-                    <option value="classic">Classic</option>
-                    <option value="standard">Standard</option>
-                    <option value="premium">Premium</option>
-                    <option value="salad">Salad</option>
-                    <option value="fitness">Fitness</option>
-                  </select>
-                  <div
-                    *ngIf="
-                      box.get('boxType')?.invalid && box.get('boxType')?.touched
-                    "
-                    class="invalid-feedback"
-                  >
-                    Please select a box type.
-                  </div>
-                </div>
-
-                <!-- Salad Type (Conditional) -->
-                <div class="col" *ngIf="selectedSaladIndexes.includes(i)">
-                  <label class="form-label text-muted">Salad Type</label>
-                  <select
-                    formControlName="saladType"
-                    class="form-control form-control-sm"
-                    [ngClass]="{
-                      'is-invalid':
-                        box.get('saladType')?.invalid &&
-                        box.get('saladType')?.touched,
-                      'is-valid': box.get('saladType')?.valid
-                    }"
-                  >
-                    <option value="">--Choose--</option>
-                    <option value="mixed">Mixed Box</option>
-                    <option value="standard">Standard Box</option>
-                    <option value="premium">Premium Box</option>
-                  </select>
-                  <div
-                    *ngIf="
-                      box.get('saladType')?.invalid &&
-                      box.get('saladType')?.touched
-                    "
-                    class="invalid-feedback"
-                  >
-                    Please select a salad type.
-                  </div>
-                </div>
-
-                <div class="col">
-                  <label class="form-label text-muted">Subscription</label>
-                  <select
-                    formControlName="subscription"
-                    class="form-control form-control-sm"
-                    [ngClass]="{
-                      'is-invalid':
-                        box.get('subscription')?.invalid &&
-                        box.get('subscription')?.touched,
-                      'is-valid': box.get('subscription')?.valid
-                    }"
-                  >
-                    <option value="">--Choose--</option>
-                    <option value="trial">Trial</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                  </select>
-                  <div
-                    *ngIf="
-                      box.get('subscription')?.invalid &&
-                      box.get('subscription')?.touched
-                    "
-                    class="invalid-feedback"
-                  >
-                    Please select a subscription type.
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 position-relative" (click)="openDatePicker(i)">
-                <label class="form-label text-muted">Delivery Date</label>
-                <input
-                  id="deliveryDate{{ i }}"
-                  formControlName="deliveryDate"
-                  class="form-control form-control-sm"
-                  type="date"
-                  [min]="minDate"
-                  [ngClass]="{
-                    'is-invalid':
-                      box.get('deliveryDate')?.invalid &&
-                      box.get('deliveryDate')?.touched,
-                    'is-valid': box.get('deliveryDate')?.valid
-                  }"
-                />
-                <div
-                  *ngIf="
-                    box.get('deliveryDate')?.invalid &&
-                    box.get('deliveryDate')?.touched
-                  "
-                  class="invalid-feedback"
-                >
-                  Delivery date should be at least tomorrow.
-                </div>
-              </div>
-
-              <button
-                type="button"
-                (click)="removeBox(i)"
-                class="btn btn-danger btn-sm mt-2 rounded-pill"
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <button
-              type="button"
-              (click)="addBox()"
-              class="btn btn-outline-success btn-sm rounded-pill"
-            >
-              + Add Box
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          (click)="order()"
-          [disabled]="boxForm.invalid"
-        >
-          Order
-        </button>
-        <div class="spinner-grow text-success" *ngIf="loading" role="status">
-          <span class="visually-hidden">Loading...</span>
+<!-- Benefits Section -->
+<section class="benefits py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Why Choose Us?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="benefit-card">
+          <i class="bi bi-calendar-check"></i>
+          <h5>Flexible Subscriptions</h5>
+          <p>Choose from trial, weekly or monthly plans. Pause or cancel anytime.</p>
         </div>
-        <div *ngIf="orderSuccess" class="success-message">
-          <span class="green-tick">✓</span> Order placed successfully!
+      </div>
+      <div class="col-md-4">
+        <div class="benefit-card">
+          <i class="bi bi-truck"></i>
+          <h5>Free Local Delivery</h5>
+          <p>Free delivery within 2 KM of Kallakurichi. Affordable rates beyond.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="benefit-card">
+          <i class="bi bi-shield-check"></i>
+          <h5>Premium Quality</h5>
+          <p>Fresh, organic produce handpicked for quality and nutrition.</p>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-4" style="color: black;">
+  <div class="container">
+    <div class="social-links">
+      Follow us on:
+      <a href="https://www.instagram.com/fit25204/" target="_blank" class="text-danger">
+        <i class="bi bi-instagram"></i> Instagram
+      </a>
+      |
+      <a href="https://wa.me/918438911467" target="_blank" class="text-success">
+        <i class="bi bi-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <p class="mb-4">For bulk orders (Seminars, Offices, Functions, Parties) contact us directly</p>
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#orderModal">
+      Order Now
+    </button>
+    <p class="mt-3 mb-0">© 2023 AM HERE. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Order Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModal" aria-hidden="true" (hidden.bs.modal)="onModalHidden()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="orderModal" style="color: black;">
+          @if(!orderSuccess) { Order Information }
+          @if(orderSuccess) { Order Successful! }
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Form Content -->
+        @if(!orderSuccess) {
+          <form [formGroup]="boxForm" class="row g-2 needs-validation p-1 border rounded shadow-sm" novalidate>
+            <!-- Name & Phone Fields -->
+            <div class="row row-cols-2">
+              <div class="col">
+                <label for="name" class="form-label text-muted">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="form-control form-control-sm"
+                  [ngClass]="{
+                    'is-invalid': boxForm.get('name')?.invalid && boxForm.get('name')?.touched,
+                    'is-valid': boxForm.get('name')?.valid
+                  }"
+                  placeholder="Name"
+                />
+                <div *ngIf="boxForm.get('name')?.invalid && boxForm.get('name')?.touched" class="invalid-feedback">
+                  Name is required.
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="phoneNumber" class="form-label text-muted">Phone No</label>
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  formControlName="phoneNumber"
+                  class="form-control form-control-sm"
+                  [ngClass]="{
+                    'is-invalid': boxForm.get('phoneNumber')?.invalid && boxForm.get('phoneNumber')?.touched,
+                    'is-valid': boxForm.get('phoneNumber')?.valid
+                  }"
+                  placeholder="Phone number"
+                />
+                <div *ngIf="boxForm.get('phoneNumber')?.invalid && boxForm.get('phoneNumber')?.touched" class="invalid-feedback">
+                  Enter a valid phone number.
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Field -->
+            <div class="col-12">
+              <label for="address" class="form-label text-muted">Address</label>
+              <input
+                type="text"
+                id="address"
+                formControlName="address"
+                class="form-control form-control-sm"
+                [ngClass]="{
+                  'is-invalid': boxForm.get('address')?.invalid && boxForm.get('address')?.touched,
+                  'is-valid': boxForm.get('address')?.valid
+                }"
+                placeholder="Address"
+              />
+              <div *ngIf="boxForm.get('address')?.invalid && boxForm.get('address')?.touched" class="invalid-feedback">
+                Address is required.
+              </div>
+            </div>
+
+            <!-- Box Selection Array -->
+            <div formArrayName="boxes" class="col-12">
+              <div
+                *ngFor="let box of boxes.controls; let i = index"
+                [formGroupName]="i"
+                class="p-2 border rounded shadow-sm mb-2"
+              >
+                <h6 class="text-muted">Box {{ i + 1 }}</h6>
+
+                <div class="row row-cols-2">
+                  <!-- Box Type -->
+                  <div class="col">
+                    <label class="form-label text-muted">Box Type</label>
+                    <select
+                      formControlName="boxType"
+                      class="form-control form-control-sm"
+                      (change)="onBoxTypeChange($event, i)"
+                      [ngClass]="{
+                        'is-invalid': box.get('boxType')?.invalid && box.get('boxType')?.touched,
+                        'is-valid': box.get('boxType')?.valid
+                      }"
+                    >
+                      <option value="">--Choose--</option>
+                      <option value="mini">Mini</option>
+                      <option value="classic">Classic</option>
+                      <option value="standard">Standard</option>
+                      <option value="premium">Premium</option>
+                      <option value="salad">Salad</option>
+                      <option value="fitness">Fitness</option>
+                    </select>
+                    <div *ngIf="box.get('boxType')?.invalid && box.get('boxType')?.touched" class="invalid-feedback">
+                      Please select a box type.
+                    </div>
+                  </div>
+
+                  <!-- Salad Type (Conditional) -->
+                  <div class="col" *ngIf="selectedSaladIndexes.includes(i)">
+                    <label class="form-label text-muted">Salad Type</label>
+                    <select
+                      formControlName="saladType"
+                      class="form-control form-control-sm"
+                      [ngClass]="{
+                        'is-invalid': box.get('saladType')?.invalid && box.get('saladType')?.touched,
+                        'is-valid': box.get('saladType')?.valid
+                      }"
+                    >
+                      <option value="">--Choose--</option>
+                      <option value="mixed">Mixed Box</option>
+                      <option value="standard">Standard Box</option>
+                      <option value="premium">Premium Box</option>
+                    </select>
+                    <div *ngIf="box.get('saladType')?.invalid && box.get('saladType')?.touched" class="invalid-feedback">
+                      Please select a salad type.
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <label class="form-label text-muted">Subscription</label>
+                    <select
+                      formControlName="subscription"
+                      class="form-control form-control-sm"
+                      [ngClass]="{
+                        'is-invalid': box.get('subscription')?.invalid && box.get('subscription')?.touched,
+                        'is-valid': box.get('subscription')?.valid
+                      }"
+                    >
+                      <option value="">--Choose--</option>
+                      <option value="trial">Trial</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="monthly">Monthly</option>
+                    </select>
+                    <div *ngIf="box.get('subscription')?.invalid && box.get('subscription')?.touched" class="invalid-feedback">
+                      Please select a subscription type.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3 position-relative" (click)="openDatePicker(i)">
+                  <label class="form-label text-muted">Delivery Date</label>
+                  <input
+                    id="deliveryDate{{ i }}"
+                    formControlName="deliveryDate"
+                    class="form-control form-control-sm"
+                    type="date"
+                    [min]="minDate"
+                    [ngClass]="{
+                      'is-invalid': box.get('deliveryDate')?.invalid && box.get('deliveryDate')?.touched,
+                      'is-valid': box.get('deliveryDate')?.valid
+                    }"
+                  />
+                  <div *ngIf="box.get('deliveryDate')?.invalid && box.get('deliveryDate')?.touched" class="invalid-feedback">
+                    Delivery date should be at least tomorrow.
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  (click)="removeBox(i)"
+                  class="btn btn-danger btn-sm mt-2 rounded-pill"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button
+                type="button"
+                (click)="addBox()"
+                class="btn btn-outline-success btn-sm rounded-pill"
+              >
+                + Add Box
+              </button>
+            </div>
+          </form>
+        }
+        
+        <!-- Success Content -->
+        @if(orderSuccess) {
+          <div class="text-center py-4">
+            <div class="success-icon mb-3">
+              <i class="bi bi-check-circle-fill" style="font-size: 5rem; color: #28a745;"></i>
+            </div>
+            <h3 class="mb-3" style="color: #28a745;">Order Placed Successfully!</h3>
+            <p class="lead">Thank you for your order. We'll contact you shortly.</p>
+            <button class="btn btn-success mt-3" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        }
+      </div>
+      
+      <!-- Modal Footer -->
+      @if(!orderSuccess) {
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-success" (click)="order()" [disabled]="boxForm.invalid">
+            Order
+          </button>
+          <div class="spinner-grow text-success" *ngIf="loading" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
