@@ -39,7 +39,7 @@
       <div class="col">
         <div class="card h-100 subscription-card">
           <div class="card-header">
-            <h5 class="card-title">{{ box.name }}</h5>
+            <h5 class="card-title" style="color: black;">{{ box.name }}</h5>
           </div>
           <img [src]="box.image + '?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'" class="card-img-top" [alt]="box.name">
           <div class="card-body">
@@ -50,7 +50,7 @@
             </ul>
             <div class="delivery-info">
               <p><i class="bi bi-info-circle"></i> <strong>Pre-booking:</strong> Must be done one day before delivery</p>
-              <p><i class="bi bi-clock"></i> <strong>Delivery:</strong> 7:00 AM to 9:00 PM</p>
+              <p><i class="bi bi-clock"></i> <strong>Delivery:</strong> 7:00 AM to 9:00 AM</p>
               <p><i class="bi bi-truck"></i> <strong>Free Delivery:</strong> Within 2 KM of Kallakurichi</p>
               @if (box.id === 'salad' || box.id === 'premium' || box.id === 'fitness') {
                 <p><i class="bi bi-gear"></i> <strong>Customised Box:</strong> Available</p>
@@ -234,6 +234,9 @@
                       <option value="premium">Premium</option>
                       <option value="salad">Salad</option>
                       <option value="fitness">Fitness</option>
+                      <option value="children">Children</option>
+                      <option value="senior_citizen">Senior_Citizen</option>
+
                     </select>
                     <div *ngIf="box.get('boxType')?.invalid && box.get('boxType')?.touched" class="invalid-feedback">
                       Please select a box type.

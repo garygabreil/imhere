@@ -64,6 +64,20 @@ export class AppComponent {
       image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
       description: 'Mini Box - ₹70, Standard Box - ₹120, Premium Box - ₹180',
       prices: { trial: 70, weekly: 120, monthly: 180 }
+    },
+     {
+      id: 'senior citizen',
+      name: 'Senior Citizen Box',
+      image: 'https://images.unsplash.com/photo-1547592180-85f173990554',
+      description: '2 Fruits, 1 Vegetable,1 Lentils',
+      prices: { trial: 59, weekly: 399, monthly: 1499 }
+    },
+      {
+      id: 'children box',
+      name: 'Childern Box',
+      image: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b',
+      description: '3 Fruits, 2 Vegetable',
+      prices: { trial: 59, weekly: 350, monthly: 1300 }
     }
   ];
 
@@ -249,7 +263,7 @@ export class AppComponent {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: "garygabreil@gmail.com", // assuming you have email in form
+          to: "amhere535@gmail.com", // assuming you have email in form
           subject: 'Order Confirmation',
           text: `Thank you for your order! Order by: ${this.boxForm.value.name}, ${this.boxForm.value.phoneNumber}`,
           html: emailHtml
